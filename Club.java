@@ -90,7 +90,12 @@ public class Club
                 }
             }
         }
+        else
+        {
+            System.out.println("Los parametros introducidos no son validos");
+        }
         return bajas;
     }
+
 }
 
