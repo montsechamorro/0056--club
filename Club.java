@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Iterator;
 /**
  * Store details of club memberships.
  * 
@@ -77,24 +78,29 @@ public class Club
      */
     public ArrayList<Membership> purge(int month, int year)
     {
-        ArrayList<Membership> bajas = new ArrayList();
+        ArrayList<Membership> eliminados = new ArrayList();
 
         if ((month > 0) && (month < 13))
         {
-            for (Membership miembros : socios)
-            {
-                if ((month == miembros.getMonth()) && (year == miembros.getYear()))
-                {
-                    bajas.add(miembros);
-                    socios.remove(miembros);
-                }
-            }
+            // bucle que elimina del atributo miembros y añade a eliminados
+           Iterator<Membership> it = socios.iterator();
+           
+			while (it.hasNext())
+			{
+				Membership miembro = it.next();
+				
+				if(miembro.getMonth() == month && miembro.getYear() == year)
+				{
+					eliminados.add(miembro);
+					it.remove();
+				}
+			}
         }
         else
         {
             System.out.println("Los parametros introducidos no son validos");
         }
-        return bajas;
+        return eliminados;
     }
 
 }
